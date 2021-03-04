@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to ASCII Converter</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css" integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossorigin="anonymous">
+
+    <style>
+        @import url("../css/styles.css");
+    </style>
+</head>
+<body>
+    <p id="title">Image to ASCII</p>
+    <form style="text-align: center; margin-top: 50px;">
+        <div>
+            <label for="file" class="label-button"><i class="fa fa-picture-o" aria-hidden="true"></i> Image(s)</label>
+            <input type="file" multiple id="file">
+            <p id="filename">Not chosen</p>
+        </div>
+        <div style="margin-top: 20px;">
+            <label class="label-button" for="path"><i class='fa fa-folder-open' aria-hidden='true'></i> Output folder</label>
+            <input type="button" id="path" onclick="window.api.send('toMain', {action: 'path'})">
+            <p id="pathname">Not chosen</p>
+        </div>
+        <button style="margin-top: 55px; font-size: 15px;" type="submit">&#128640; Convert to ASCII &#128640;</button>
+    </form>
+    
+    <footer>
+        <p>Made by <a id="promo" onclick="openPromo()" type="_blank">EliasVal</a> using Electron, Node.js and &#10084;&#65039;</p>
+    </footer>
+    
+    <script>
+        document.getElementById("file").addEventListener("change", function(event) {
+            if (!Array.from(event.target.files).every(f => f.type.match(/image\/((jpe?g)|(png)|(bmp)|(tiff))/i)))
+            {
+                alert("Only image files are allowed!\nSupported types: jpeg, jpg, png, bmp, tiff")
+                event.target.value = null
+                document.getElementById("filename").innerHTML = "Not chosen"
+            }
+            else {
+                document.getElementById("filename").innerHTML = `[ ${Array.from(event.target.files).map(f => " " + f.name)} ]`
+            }
+        })
+
+        const form = document.querySelector('form')
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            if (!document.getElementById("file").files[0]) {
+                alert("Please choose an image!", "Image to ASCII")
+                return;
+            }
+            let data = {
+                action: "ascii",
+                imagePath: Array.from(document.getElementById("file").files).map(f => f.path),
+                outputPath: path
+            }
+            window.api.send("toMain", data)
+        })
+
+        var path = "Not chosen"
+        window.api.receive("fromMain", (data) => {
+            if (data.status == "err")
+            {
+                switch (data.message) {
+                    case "invalid_path":
+                        alert("Please enter a valid path!", "Image to ASCII")
+                        break;
+                    default:
+                        alert(data.message, "Image to ASCII")
+                        break;
+                }
+            }
+            else if (data.status == "path") {
+                document.getElementById("pathname").innerHTML = `[ ${data.path}\\ ]`
+                path = data.path
+            }
+        })
+
+
+        window.alert = (message, title="Image to ASCII_") => {
+            let data = {
+                action: "alert",
+                title: title,
+                message: message
+            }
+            window.api.send("toMain", data)
+        }
+
+        function openPromo() {
+            window.api.send("toMain", {action: "openPromo"})
+        }
+
+    </script>
+</body>
+</html>

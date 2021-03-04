@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+}
+
+html {
+  background-color: #272626;
+}
+
+input[type=file], input[type=button] {
+  display: none;
+}
+
+button, .label-button {
+  background-color: white;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+button, .label-button, i {
+  color: black;
+  cursor: pointer;
+}
+
+#title {
+  text-align: center;
+  font-size: xx-large;
+  font-weight: 300;
+  margin-top: 15px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: calc(100% - 10px);
+  background-color: black;
+  padding: 5px;
+}
+
+#promo {
+  text-decoration: underline;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+form div p {
+  margin: 10px 0;
+}
+/*# sourceMappingURL=styles.css.map */
