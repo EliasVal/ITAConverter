@@ -16,3 +16,5 @@ QnA:
 > Yes. They're located in `chars.json`.
 4. What can I do with the App/Source Code?
 > as the `LICENSE` suggets, basically anything. Just don't claim it as yours, and if you do modify it, keep it open source.
+5. What is that app icon?
+> Didn't know what icon to give it and I didn't really want it to have the default Electron icon, so I used my Discord Profile Picture :D
