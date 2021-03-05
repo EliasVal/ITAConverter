@@ -51,7 +51,7 @@
         form.addEventListener('submit', function (e) {
             e.preventDefault();
             if (!document.getElementById("file").files[0]) {
-                alert("Please choose an image!", "Image to ASCII")
+                alert("Please choose an image!")
                 return;
             }
             let data = {
@@ -68,10 +68,12 @@
             {
                 switch (data.message) {
                     case "invalid_path":
-                        alert("Please enter a valid path!", "Image to ASCII")
+                        alert("Please enter a valid path!") 
+                             
+
                         break;
                     default:
-                        alert(data.message, "Image to ASCII")
+                        alert(data.message)
                         break;
                 }
             }
@@ -82,7 +84,7 @@
         })
 
 
-        window.alert = (message, title="Image to ASCII_") => {
+        window.alert = (message, title="Image to ASCII") => {
             let data = {
                 action: "alert",
                 title: title,
