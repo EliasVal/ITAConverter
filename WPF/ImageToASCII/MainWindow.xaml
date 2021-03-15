@@ -1,0 +1,77 @@
+﻿<Window x:Class="ImageToASCII.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ImageToASCII"
+        xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
+        mc:Ignorable="d"
+        Title="Image to ASCII" Height="450" Width="800" Background="#FF272626" Icon="icon.ico"
+        ResizeMode="NoResize">
+    <Window.Resources>
+        <Style x:Key="NoHoverStyles" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.8" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid>
+            <TextBlock TextAlignment="Center" Foreground="White" FontSize="26" TextDecorations="Underline" HorizontalAlignment="Center" Height="411" VerticalAlignment="Top" Width="794" Margin="0, 10, 0, 0">
+                Image to ASCII Converter
+            </TextBlock>
+            <Grid>
+                <Button Style="{StaticResource NoHoverStyles}" Click="Button_ImageDialogue" Margin="0, 65, 0, 0" FontSize="12" HorizontalAlignment="Center" Width="150" Height="34" VerticalAlignment="Top" Background="Transparent" BorderThickness="0" BorderBrush="Transparent">
+                    <Button.Content>
+                        <Border Background="White" CornerRadius="5" Margin="0" BorderBrush="Black" BorderThickness="0,0,0,0" Width="147" Height="30" >
+                            <emoji:TextBlock Text="🖼️ Choose Image(s)" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </Button.Content>
+                </Button>
+                <TextBlock x:Name="ImagesText" Foreground="White" Margin="0,99,0,0" TextAlignment="Center" Width="300" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    Not Selected
+                </TextBlock>
+            </Grid>
+
+            <Grid>
+                <Button Style="{StaticResource NoHoverStyles}" Click="Button_FolderDialog" Margin="0,155,0,0" FontSize="12" HorizontalAlignment="Center" Width="150" Height="34" VerticalAlignment="Top" Background="Transparent" BorderThickness="0" BorderBrush="Transparent">
+                    <Button.Content>
+                        <Border Background="White" CornerRadius="5" Margin="0" BorderBrush="Black" BorderThickness="0,0,0,0" Width="147" Height="30" >
+                            <emoji:TextBlock Text="📁 Choose Output Folder" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </Button.Content>
+                </Button>
+                <TextBlock x:Name="FoldersText" Foreground="White" Margin="0,189,0,0" TextAlignment="Center" Width="300" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    Not Selected
+                </TextBlock>
+            </Grid>
+
+            <Button Style="{StaticResource NoHoverStyles}" Click="Button_ASCIIfy" Margin="0,250,0,0" FontSize="12" HorizontalAlignment="Center" Width="150" Height="34" VerticalAlignment="Top" Background="Transparent" BorderThickness="0" BorderBrush="Transparent">
+                <Button.Content>
+                    <Border Background="White" CornerRadius="5" Margin="0" BorderBrush="Black" BorderThickness="0,0,0,0" Width="147" Height="30" >
+                        <emoji:TextBlock Text="🚀 Convert to ASCII! 🚀" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </Button.Content>
+            </Button>
+        </Grid>
+        <Grid>
+            <emoji:TextBlock Text="Made with C#, WPF and ❤️ by" Background="Black" VerticalAlignment="Bottom" Foreground="White" Padding="5" />
+            <Button Click="Button_OpenGithub" Style="{StaticResource NoHoverStyles}" Background="#00DDDDDD" BorderBrush="White" Cursor="Hand" Foreground="White" Margin="167,0,0,0" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="47">
+                <TextBlock TextDecorations="Underline">EliasVal</TextBlock>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>
