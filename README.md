@@ -1,5 +1,5 @@
 # ITA (Image to ASCII) Converter
-#### I'm aware that I'm not the first to make this, this is just a fun side-project I worked on.
+#### I'm aware that I'm not the first to something like this, this is just a fun side-project I worked on.
 
 
 
@@ -18,3 +18,5 @@ QnA:
 > as the `LICENSE` suggets, basically anything. Just don't claim it as yours, and if you do modify it, keep it open source.
 5. What is that app icon?
 > Didn't know what icon to give it and I didn't really want it to have the default Electron icon, so I used my Discord Profile Picture :D
+6. If the WPF is so small, why did you got with Electron in the first place?
+> I wanted to do an ITA Converter for quite a while now, and I wanted to learn a bit of electron, and I knew JIMP could be great for the job too, so I just went with it, and also at the beginning I didn't expect the build to be that large 😅
